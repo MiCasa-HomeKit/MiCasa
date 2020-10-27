@@ -28,9 +28,10 @@ struct MiCasa: ParsableCommand {
     mutating func run() throws {
         let pluginDirUrl = URL(fileURLWithPath: pluginDir, isDirectory: true)
         let configFileUrl = URL(fileURLWithPath: configFile, isDirectory: false)
-        let bridge = try Bridge(configFile: configFileUrl, pluginDir: pluginDirUrl)
 
-        bridge.start()
+        try Bridge.shared.initialize(configFile: configFileUrl, pluginDir: pluginDirUrl)
+
+        try Bridge.shared.start()
     }
 }
 

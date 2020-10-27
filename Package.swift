@@ -8,9 +8,10 @@ let package = Package(
     products: [
         .executable(name: "micasa", targets: ["micasa"]),
         .library(name: "micasaLib", targets: ["micasaLib"])
-    ],
+    ], 
     dependencies: [
         // Dependencies declare other packages that this package depends on.
+        .package(url: "https://github.com/mi-casa-homekit/mi-casa-plugin.git", .branch("master")),
         .package(url: "https://github.com/Bouke/HAP.git", .branch("master")),
         .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "0.3.1"),
@@ -32,6 +33,7 @@ let package = Package(
             dependencies: [
                 "HAP",
                 "AnyCodable",
+                .product(name: "MiCasaPlugin", package: "mi-casa-plugin"),
                 .product(name: "Logging", package: "swift-log"),
             ]),
         .testTarget(
