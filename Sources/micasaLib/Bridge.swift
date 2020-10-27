@@ -14,9 +14,27 @@
  limitations under the License.
  */
 
-import XCTest
-import Quick
+import Foundation
+import Logging
 
-QCKMain([
-    ConfigurationSpec.self
-])
+public final class Bridge {
+
+    // MARK: - Private Properties
+
+    private let logger = Logger(label: "mi-casa.bridge")
+    private var configuration: Configuration
+    
+
+    // MARK: - Initialization
+
+    public init(configFile configFileUrl: URL, pluginDir pluginDirUrl: URL) throws {
+        configuration = try Configuration.load(from: configFileUrl)
+    }
+
+
+    // MARK: - API
+
+    public func start() {
+        logger.info("Starting MiCasa Bridge")
+    }
+}

@@ -15,8 +15,12 @@
  */
 
 import XCTest
-import Quick
 
-QCKMain([
-    ConfigurationSpec.self
-])
+
+#if !canImport(ObjectiveC)
+public func allTests() -> [XCTestCaseEntry] {
+    return [
+        testCase(ConfigurationSpec.allTests)
+    ]
+}
+#endif
