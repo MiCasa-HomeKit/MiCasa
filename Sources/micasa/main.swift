@@ -19,18 +19,26 @@ import ArgumentParser
 import micasaLib
 
 struct MiCasa: ParsableCommand {
-    @Option(name: .shortAndLong, help: "Directory where plugins are stored.")
-    var pluginDir: String = "/usr/local/lib/mi-casa-plugins"
+    @Option(name: .shortAndLong, help: "Directories where plugins are stored.")
+    var pluginDirs: [String] = ["/usr/local/lib/mi-casa-plugins"]
+
+    @Option(name: .shortAndLong, help: "Fully qualified path of the cache file.")
+    var storageFile: String = "/var/mi-casa/cache.json"
 
     @Option(name: .shortAndLong, help: "Fully qualified path of the configuration file.")
     var configFile: String = "/etc/mi-casa.conf"
 
     mutating func run() throws {
-        let pluginDirUrl = URL(fileURLWithPath: pluginDir, isDirectory: true)
+        let pluginDirUrls = pluginDirs.map { pluginDir in URL(fileURLWithPath: pluginDir, isDirectory: true) }
         let configFileUrl = URL(fileURLWithPath: configFile, isDirectory: false)
+        let storageFileUrl = URL(fileURLWithPath: storageFile, isDirectory: false)
 
-        try Bridge.shared.initialize(configFile: configFileUrl, pluginDir: pluginDirUrl)
-
+        try Bridge
+            .shared
+            .initialize(
+                configFile: configFileUrl,
+                storageFile: storageFileUrl,
+                pluginDirs: pluginDirUrls)
         try Bridge.shared.start()
     }
 }
