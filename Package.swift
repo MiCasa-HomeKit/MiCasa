@@ -12,8 +12,8 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/MiCasa-HomeKit/MiCasaPlugin.git", .branch("master")),
-        .package(url: "https://github.com/Bouke/HAP.git", .branch("master")),
-        .package(url: "https://github.com/apple/swift-log.git", from: "1.0.0"),
+        .package(url: "https://github.com/MiCasa-HomeKit/HAP.git", .branch("master")),
+        .package(url: "https://github.com/MiCasa-HomeKit/swift-log.git", .branch("master")),
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "0.3.1"),
         .package(url: "https://github.com/Flight-School/AnyCodable.git", from: "0.3.0"),
         .package(url: "https://github.com/Quick/Quick.git", from: "3.0.0"),

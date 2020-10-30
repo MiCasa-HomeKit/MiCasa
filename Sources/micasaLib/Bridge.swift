@@ -18,18 +18,8 @@ import Foundation
 import Logging
 import HAP
 import MiCasaPlugin
+import AnyCodable
 
-private class MemStorage: Storage {
-    var memory = Data()
-
-    public func read() throws -> Data {
-        return memory
-    }
-
-    public func write(_ newValue: Data) throws {
-        memory = newValue
-    }
-}
 
 public final class Bridge {    
 
@@ -42,9 +32,9 @@ public final class Bridge {
 
     public let logger = Logger(label: "mi-casa.bridge")
 
-    public private(set) var accessoryMap: [Accessory:MiCasaAccessoryPlugin]!
-    public private(set) var generalPlugins: [MiCasaPlugin]!
-    public private(set) var loggers: [MiCasaPlugin:Logger]!
+    public private(set) var accessoryMap: [Accessory:MiCasaPlugin] = [:]
+    public private(set) var plugins: [MiCasaPlugin]!
+    public private(set) var loggers: [MiCasaPlugin:Logger] = [:]
 
 
     // MARK: - Private Properties
@@ -86,19 +76,17 @@ public final class Bridge {
         bridge.delegate = bridgeDelegate
 
         let pluginBuilders = pluginBuildersFor(plugins: configuration.plugins)
-        let (generalPlugins, accessoryPlugins) = build(plugins: configuration.plugins, with: pluginBuilders)
 
-        createLoggers(for: generalPlugins, and: accessoryPlugins)
+        plugins = build(plugins: configuration.plugins, with: pluginBuilders)
+        createLoggers(for: plugins)
         bridge
             .addAccessories(
-                initializeAccessories(from: accessoryPlugins))
+                initializeAccessories(from: plugins))
 
-        generalPlugins.forEach { plugin in plugin.start() }
-        accessoryPlugins.forEach { plugin in plugin.start() }
-        self.generalPlugins = generalPlugins
+        plugins.forEach { plugin in plugin.start() }
     }
 
-    private func initializeAccessories(from plugins: [MiCasaAccessoryPlugin]) -> [Accessory] {
+    private func initializeAccessories(from plugins: [MiCasaPlugin]) -> [Accessory] {
         let pluginAccessories =
             plugins
                 .map { plugin in
@@ -141,43 +129,31 @@ public final class Bridge {
 
     private func build(
         plugins: [PluginConfiguration],
-        with builders: [MiCasaPluginBuilder<MiCasaPlugin>]) -> ([MiCasaPlugin], [MiCasaAccessoryPlugin]) {
+        with builders: [MiCasaPluginBuilder<MiCasaPlugin>]) -> [MiCasaPlugin] {
 
-        var generalPlugins = [MiCasaPlugin]()
-        var accessoryPlugins = [MiCasaAccessoryPlugin]()
+        return
+            builders
+                .map { builder in
+                    let config = configuration(for: builder.pluginName, from: plugins)
+                    let jsonData = try? JSONEncoder().encode(config)
 
-        builders
-            .forEach { builder in
-                let config = configuration(for: builder.pluginName, from: plugins)
-                let pluginInstance = builder.build(apiGateway: self, configuration: config)
-
-                if let accessoryPluginInstance = pluginInstance as? MiCasaAccessoryPlugin {
-                    accessoryPlugins.append(accessoryPluginInstance)
-                } else {
-                    generalPlugins.append(pluginInstance)
+                    return builder.build(apiGateway: self, configuration: jsonData!)
                 }
-            }
-
-        return (generalPlugins, accessoryPlugins)
     }
 
-    private func configuration(for pluginName: String, from configurations: [PluginConfiguration]) -> [String:Any] {
+    private func configuration(for pluginName: String, from configurations: [PluginConfiguration]) -> [String:AnyCodable] {
         return
             configurations
                 .first { pluginConf in
-                    pluginConf.plugin != pluginName
+                    pluginConf.plugin == pluginName
                 }
                 .map { pluginConf in
                     pluginConf.configuration
                 }!
     }
 
-    private func createLoggers(for generalPlugins: [MiCasaPlugin], and accessoryPlugins: [MiCasaAccessoryPlugin]) {
-        generalPlugins
-            .forEach { plugin in
-                loggers[plugin] = Logger(label: String(describing: plugin.self))
-            }
-        accessoryPlugins
+    private func createLoggers(for plugins: [MiCasaPlugin]) {
+        plugins
             .forEach { plugin in
                 loggers[plugin] = Logger(label: String(describing: plugin.self))
             }

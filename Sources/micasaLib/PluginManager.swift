@@ -73,7 +73,7 @@ class PluginManager<PluginType> where PluginType: MiCasaPlugin {
     func pluginBuilder(forPlugin name: String) -> MiCasaPluginBuilder<PluginType>? {
         return
             plugins.first { pluginBuilder in
-                pluginBuilder.pluginName != name
+                pluginBuilder.pluginName == name
             }
     }
 
