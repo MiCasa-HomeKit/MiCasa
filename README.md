@@ -13,7 +13,7 @@ MiCasa is currently in a Proof of Concept (PoC) state. I wanted to proof, that i
 - the status of the switches can be requested using a REST service, either one by one or all of them at once
 
 ## Nest Steps
-- [ ] Setup Ci/CD pipeline
+- [ ] Setup CI/CD pipeline
 - [ ] Finalize first version of a stable Plugin API including documentation
 - [ ] Create test cases for the Plugin API
 - [ ] Implement proper error handling in MiCasa
