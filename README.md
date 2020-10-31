@@ -5,7 +5,7 @@
 ## Goal
 The goal of MiCasa is the provisioning of a HomeKit Bridge, such that devices not supported by HomeKit can also be integrated with the same.
 Homebridge is another project that has exactly the same goal. The advantage of Homebridge is its maturity as well as the vast number of available
-plugin. It disadvantage: It's developed using Node.js. Running Homebridge on a Raspberry Pi 1 Model B with 510MB of RAM is a performance hog; it
+plugins. Its disadvantage: It's developed using Node.js. Running Homebridge on a Raspberry Pi 1 Model B with 512MB of RAM is a performance hog; it
 requires about 15-20 minutes to launch Homebridge with all the plugins (in my case six plugins).
 
 MiCasa is developed in Swift which is compiled to native code and hence should run a lot faster. The disadvantage as of now is the fact, that
