@@ -12,3 +12,12 @@ MiCasa is currently in a Proof of Concept (PoC) state. I wanted to proof, that i
 - the switches can be toggled using a REST service, either one by one or all of them at once
 - the status of the switches can be requested using a REST service, either one by one or all of them at once
 
+## Nest Steps
+- [ ] Finalize first version of a stable Plugin API including documentation
+- [ ] Create test cases for the Plugin API
+- [ ] Implement proper error handling in MiCasa
+- [ ] Create test cases for MiCasa
+- [ ] Setup Ci/CD pipeline
+- [ ] Create concept for installing plugins without the need for logging in to the system
+- [ ] Develop plugin that provides a web-based UI
+- [ ] Develop device plugins :-)
