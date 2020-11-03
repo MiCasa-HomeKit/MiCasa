@@ -41,6 +41,19 @@ sudo apt install openssl libssl-dev libsodium-dev libcurl4-openssl-dev libavahi-
   ```bash
   git clone --branch proof-of-concept https://github.com/MiCasa-HomeKit/MiCasa.git
   ```
+- cd into the MiCasa directory:
+  ```bash
+  cd MiCasa
+  ```
+- Build and install:
+  - macOS
+  ```bash
+  sudo ./install-macos.sh
+  ```
+  - Linux
+  ```bash
+  sudo ./install-linux.sh
+  ```
 
 ## Nest Steps
 - [ ] Setup CI/CD pipeline
