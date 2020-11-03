@@ -54,6 +54,25 @@ sudo apt install openssl libssl-dev libsodium-dev libcurl4-openssl-dev libavahi-
   ```bash
   sudo ./install-linux.sh
   ```
+  
+#### Install MiCasaHttpSwitch
+- Clone the [GitHub Repository](https://github.com/MiCasa-HomeKit/MiCasaHttpSwitch/tree/proof-of-concept):
+  ```bash
+  git clone --branch proof-of-concept https://github.com/MiCasa-HomeKit/MiCasaHttpSwitch.git
+  ```
+- cd into the MiCasaHttpSwitch directory:
+  ```bash
+  cd MiCasaHttpSwitch
+  ```
+- Build and install:
+  - macOS
+  ```bash
+  sudo ./install-macos.sh
+  ```
+  - Linux
+  ```bash
+  sudo ./install-linux.sh
+  ```
 
 ## Nest Steps
 - [ ] Setup CI/CD pipeline
