@@ -22,6 +22,10 @@ MiCasa is currently in a Proof of Concept (PoC) state. I wanted to proof, that i
 ### Building and Installing the PoC
 #### Prerquisites
 ##### macOS
+Install libsodium:
+```bash
+brew install libsodium
+```
 
 #### MiCasa
 
