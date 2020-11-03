@@ -22,6 +22,8 @@ MiCasa is currently in a Proof of Concept (PoC) state. I wanted to proof, that i
 ### Building and Installing the PoC
 #### Prerquisites
 ##### macOS
+Xcode 12.x with Swift 5.3 must be installed.
+
 Install libsodium:
 ```bash
 brew install libsodium
