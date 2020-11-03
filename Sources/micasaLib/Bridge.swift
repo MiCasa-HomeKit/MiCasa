@@ -83,7 +83,9 @@ public final class Bridge {
             .addAccessories(
                 initializeAccessories(from: plugins))
 
-        plugins.forEach { plugin in plugin.start() }
+        plugins.forEach { plugin in
+            plugin.start()
+        }
     }
 
     private func initializeAccessories(from plugins: [MiCasaPlugin]) -> [Accessory] {
