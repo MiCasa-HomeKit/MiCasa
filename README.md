@@ -18,18 +18,25 @@ MiCasa is currently in a Proof of Concept (PoC) state. I wanted to proof, that i
 - the switches can be toggled using a REST service, either one by one or all of them at once
 - the status of the switches can be requested using a REST service, either one by one or all of them at once
 
-
 ### Building and Installing the PoC
 #### Prerquisites
 ##### macOS
 Xcode 12.x with Swift 5.3 must be installed.
 
-Install libsodium:
+Install libsodium as a dependency:
 ```bash
 brew install libsodium
 ```
 
-#### MiCasa
+##### Linux
+Install Swift 5.3 from [swift.org](https://swift.org/download/).
+
+Install the dependencies:
+```bash
+sudo apt install openssl libssl-dev libsodium-dev libcurl4-openssl-dev libavahi-compat-libdnssd-dev
+```
+
+#### Install MiCasa
 
 
 ## Nest Steps
