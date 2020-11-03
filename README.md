@@ -37,7 +37,10 @@ sudo apt install openssl libssl-dev libsodium-dev libcurl4-openssl-dev libavahi-
 ```
 
 #### Install MiCasa
-
+- Clone the [GitHub Repository](https://github.com/MiCasa-HomeKit/MiCasa/tree/proof-of-concept):
+  ```bash
+  git clone --branch proof-of-concept https://github.com/MiCasa-HomeKit/MiCasa.git
+  ```
 
 ## Nest Steps
 - [ ] Setup CI/CD pipeline
