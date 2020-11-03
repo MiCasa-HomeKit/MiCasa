@@ -74,6 +74,35 @@ sudo apt install openssl libssl-dev libsodium-dev libcurl4-openssl-dev libavahi-
   sudo ./install-linux.sh
   ```
 
+#### Launch MiCasa
+```bash
+micasa --plugin-dirs /usr/local/lib/micasa --storage-file `pwd`/cache.json --config-file `pwd`/mi-casa.conf
+```
+
+Now you can add MiCasa to your home; the setup code is `421-68-945`.
+
+You can control the switch also by accessing the following endpoints:
+- Turn all switches on (HTTP method: POST):
+  ```
+  http://<YOUR-IP-ADDRESS>:18080/switches/on
+  ```
+- Turn all switches off (HTTP method: POST):
+  ```
+  http://<YOUR-IP-ADDRESS>:18080/switches/off
+  ```
+- Turn one specific switch on (HTTP method: POST):
+  ```
+  http://<YOUR-IP-ADDRESS>:18080/switches/terrarium-light/on
+  ```
+- Turn one specific switch off (HTTP method: POST):
+  ```
+  http://<YOUR-IP-ADDRESS>:18080/switches/terrarium-light/off
+  ```
+- Get switch status  (HTTP method: GET):
+  ```
+  http://<YOUR-IP-ADDRESS>:18080/switches/status
+  ```
+
 ## Nest Steps
 - [ ] Setup CI/CD pipeline
 - [ ] Finalize first version of a stable Plugin API including documentation
