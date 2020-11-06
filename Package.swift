@@ -18,6 +18,7 @@ let package = Package(
         .package(url: "https://github.com/Flight-School/AnyCodable.git", from: "0.3.0"),
         .package(url: "https://github.com/Quick/Quick.git", from: "2.0.0"),
         .package(url: "https://github.com/Quick/Nimble.git", from: "8.0.0")
+        .package(url: "https://github.com/realm/SwiftLint", from: "0.40.3")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
