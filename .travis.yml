@@ -12,7 +12,7 @@ jobs:
     - brew install libsodium llvm
     script:
     - swift --version
-    - swift run swiftlint --strict --config ./.swiftlint.yml lint Sources
+    - swift run swiftlint --strict lint Sources
     - swift build
   - stage: Linux
     os: linux
@@ -27,5 +27,5 @@ jobs:
     - export PATH="$(pwd)/swift-5.3-RELEASE-ubuntu18.04/usr/bin:$PATH"
     script:
     - swift --version
-    - swift run swiftlint --strict --config ./.swiftlint.yml lint Sources
+    - swift run swiftlint --strict lint Sources
     - swift build
