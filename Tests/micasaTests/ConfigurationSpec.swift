@@ -36,7 +36,7 @@ final class ConfigurationSpec: QuickSpec {
             }
 
             it("Read configuration file") {
-                config = try micasaLib.Configuration.load(from: configFileUrl!)
+                config = try! micasaLib.Configuration.load(from: configFileUrl!)
             }
 
             it("The configuration was read correctly") {
@@ -59,7 +59,7 @@ final class ConfigurationSpec: QuickSpec {
             }
 
             it("Read configuration file") {
-                config = try micasaLib.Configuration.load(from: configFileUrl!)
+                config = try! micasaLib.Configuration.load(from: configFileUrl!)
             }
 
             it("The configuration was read correctly") {
