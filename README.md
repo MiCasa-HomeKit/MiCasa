@@ -8,7 +8,7 @@ Homebridge is another project that has exactly the same goal. The advantage of H
 plugins. Its disadvantage: It's developed using Node.js. Running Homebridge on a Raspberry Pi 1 Model B with 512MB of RAM is a performance hog; it
 requires about 15-20 minutes to launch Homebridge with all the plugins (in my case six plugins).
 
-MiCasa is developed in Swift which is compiled to native code and hence should run a lot faster. The disadvantage as of now is the fact, that
+MiCasa is developed in Go which is compiled to native code and hence should run a lot faster. The disadvantage as of now is the fact, that
 there are no device plugins available. But I hope that this is going to change.
 
 ## Status
@@ -21,20 +21,10 @@ MiCasa is currently in a Proof of Concept (PoC) state. I wanted to proof, that i
 ### Building and Installing the PoC
 #### Prerquisites
 ##### macOS
-Xcode 12.x with Swift 5.3 must be installed.
-
-Install libsodium as a dependency:
-```bash
-brew install libsodium
-```
+Go 1.16 must be installed.
 
 ##### Linux
-Install Swift 5.3 from [swift.org](https://swift.org/download/).
-
-Install the dependencies:
-```bash
-sudo apt install openssl libssl-dev libsodium-dev libcurl4-openssl-dev libavahi-compat-libdnssd-dev
-```
+Go 1.16 must be installed.
 
 #### Install MiCasa
 - Clone the [GitHub Repository](https://github.com/MiCasa-HomeKit/MiCasa/tree/proof-of-concept):
@@ -46,14 +36,8 @@ sudo apt install openssl libssl-dev libsodium-dev libcurl4-openssl-dev libavahi-
   cd MiCasa
   ```
 - Build and install:
-  - macOS
-  ```bash
-  sudo ./install-macos.sh
-  ```
-  - Linux
-  ```bash
-  sudo ./install-linux.sh
-  ```
+  - macOS **TODO**
+  - Linux **TODO**
   
 #### Install MiCasaHttpSwitch
 - Clone the [GitHub Repository](https://github.com/MiCasa-HomeKit/MiCasaHttpSwitch/tree/proof-of-concept):
@@ -65,19 +49,11 @@ sudo apt install openssl libssl-dev libsodium-dev libcurl4-openssl-dev libavahi-
   cd MiCasaHttpSwitch
   ```
 - Build and install:
-  - macOS
-  ```bash
-  sudo ./install-macos.sh
-  ```
-  - Linux
-  ```bash
-  sudo ./install-linux.sh
-  ```
+  - macOS **TODO**
+  - Linux **TODO**
 
 #### Launch MiCasa
-```bash
-micasa --plugin-dirs /usr/local/lib/micasa --storage-file `pwd`/cache.json --config-file `pwd`/mi-casa.conf
-```
+**TODO**
 
 Now you can add MiCasa to your home; the setup code is `421-68-945`.
 
